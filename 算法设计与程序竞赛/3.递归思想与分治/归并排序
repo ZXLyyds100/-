@@ -1,0 +1,101 @@
+
+18699 [填空]归并排序
+时间限制:1000MS  代码长度限制:10KB
+提交次数:0 通过次数:0
+
+题型: 填空题   语言: G++;GCC;VC
+
+Description
+从键盘输入N个数，使用归并排序进行排序后，由小到大输出。
+
+#include <iostream>
+using namespace std;
+int n;
+int data[1001];
+int temp[1001];
+void merge_sort(int* A, int x, int y, int* T) {
+  if(y-x > 1){
+_______________________
+    int p = x, q = m, i = x;
+    while(p < m || q < y) {
+      if(q >= y || (p < m && A[p] <= A[q]))
+        T[i++] = A[p++];
+      else
+        T[i++] = A[q++];
+    }
+    for(i = x; i < y; i++) A[i] = T[i];
+  }
+}
+
+int main()
+{
+    cin>>n;
+    for(int i=0; i<n; i++)
+        cin>>data[i];
+    merge_sort(data, 0, n, temp);
+    for(int i=0; i<n; i++)
+        cout<<data[i]<<endl;
+
+}
+
+
+输入格式
+第一行，第一个数是N（N<1000）
+第二行，N个数，空格分隔
+
+
+输出格式
+由小到大输出一行一个数
+
+
+输入样例
+6
+1 2 3 6 5 4
+
+
+输出样例
+1
+2
+3
+4
+5
+6
+
+模板题
+但是和我平时写的模板不大一样的表达方式
+底层是分支，分到最小再去解决问题
+#include <iostream>
+using namespace std;
+int n;
+int data[1001];
+int temp[1001];
+void merge_sort(int* A, int x, int y, int* T) {
+  if(y-x > 1){
+
+//-------------该行开始是填空的内容--------------
+int m = x + (y - x) / 2;
+merge_sort(A, x, m, T);
+merge_sort(A, m , y, T);
+//-------------该行之上是填空的内容--------------
+
+    int p = x, q = m, i = x;
+    while(p < m || q < y) {
+      if(q >= y || (p < m && A[p] <= A[q]))
+        T[i++] = A[p++];
+      else
+        T[i++] = A[q++];
+    }
+    for(i = x; i < y; i++) A[i] = T[i];
+  }
+}
+
+int main()
+{
+    cin>>n;
+    for(int i=0; i<n; i++)
+        cin>>data[i];
+    merge_sort(data, 0, n, temp);
+    for(int i=0; i<n; i++)
+        cout<<data[i]<<endl;
+
+}
